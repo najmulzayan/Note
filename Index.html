@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zayan Ultra Pro Khata - বাকি ও ক্যাশ খাতা</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Hind Siliguri', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #060913;
+            color: #1e293b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* App Container */
+        .app-container {
+            width: 100vw;
+            height: 100vh;
+            max-width: 480px;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+        }
+
+        @media (min-width: 481px) {
+            .app-container {
+                height: 94vh;
+                border-radius: 36px;
+                border: 6px solid #1e293b;
+            }
+        }
+
+        /* Header */
+        .app-header {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb, #3b82f6);
+            color: white;
+            padding: 20px 18px 16px 18px;
+            flex-shrink: 0;
+            border-bottom-left-radius: 28px;
+            border-bottom-right-radius: 28px;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .app-title h1 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .app-title p {
+            font-size: 11px;
+            opacity: 0.85;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .top-icon-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .top-icon-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: scale(1.05);
+        }
+
+        /* Dashboard Overview Grid (3 items) */
+        .dash-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .dash-card {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 6px;
+            border-radius: 14px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .dash-card span {
+            font-size: 10px;
+            opacity: 0.9;
+            display: block;
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+
+        .dash-card h2 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #fef08a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* View Panes */
+        .view-pane {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            background: #f1f5f9;
+        }
+
+        /* Full Screen Shop Detail Page View */
+        #shop-detail-pane {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f1f5f9;
+            z-index: 50;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 18px;
+            overflow-y: auto;
+        }
+
+        #shop-detail-pane.active {
+            transform: translateX(0);
+        }
+
+        /* Action Buttons */
+        .btn-main {
+            width: 100%;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 13px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            margin-bottom: 12px;
+            flex-shrink: 0;
+            transition: transform 0.1s;
+        }
+
+        .btn-main:active {
+            transform: scale(0.98);
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 12px 14px 12px 42px;
+            border: 1px solid #cbd5e1;
+            border-radius: 14px;
+            font-size: 14px;
+            outline: none;
+            background: #ffffff;
+            color: #1e293b;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .search-container input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+        }
+
+        /* Shop List Card */
+        .shop-item-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+        }
+
+        .shop-item-card:hover {
+            border-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.08);
+        }
+
+        .shop-info-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .shop-avatar-icon {
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            color: #1d4ed8;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.6);
+        }
+
+        .shop-meta h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 2px;
+        }
+
+        .shop-meta p {
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .shop-due-right {
+            text-align: right;
+        }
+
+        .shop-due-right .due-val {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .shop-due-right .due-val.has-due { color: #dc2626; }
+        .shop-due-right .due-val.advance { color: #16a34a; }
+        .shop-due-right .due-val.clear { color: #475569; }
+
+        .shop-due-right .due-lbl {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 2px;
+        }
+        .shop-due-right .due-lbl.has-due { background: #fee2e2; color: #dc2626; }
+        .shop-due-right .due-lbl.advance { background: #dcfce7; color: #16a34a; }
+        .shop-due-right .due-lbl.clear { background: #f1f5f9; color: #64748b; }
+
+        /* Detail Page Navigation & Banner */
+        .detail-top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+        }
+
+        .back-btn {
+            background: #e2e8f0;
+            border: none;
+            color: #1e293b;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s;
+        }
+        .back-btn:hover { background: #cbd5e1; }
+
+        .shop-summary-banner {
+            background: white;
+            border: 1px solid #cbd5e1;
+            padding: 14px 16px;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+        }
+
+        /* Mini Stats inside Detail View */
+        .detail-stats-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+        }
+
+        .mini-stat-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 10px 12px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .mini-stat-card span {
+            font-size: 11px;
+            color: #64748b;
+            display: block;
+        }
+
+        .mini-stat-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        /* Filter Tabs inside Detail View */
+        .filter-tabs {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 10px;
+            flex-shrink: 0;
+        }
+
+        .filter-tab {
+            flex: 1;
+            background: #e2e8f0;
+            border: none;
+            padding: 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .filter-tab.active {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+        }
+
+        /* History Sheet Timeline */
+        .history-sheet-container {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .history-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .history-card.due { border-left: 4px solid #dc2626; }
+        .history-card.payment { border-left: 4px solid #16a34a; }
+
+        .history-desc .title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 2px;
+        }
+
+        .history-desc .timestamp {
+            font-size: 11px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .history-amount-box {
+            text-align: right;
+        }
+
+        .history-amount-box .amount-val {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .history-amount-box .amount-val.due { color: #dc2626; }
+        .history-amount-box .amount-val.payment { color: #16a34a; }
+
+        .delete-btn-sm {
+            background: none;
+            border: none;
+            color: #cbd5e1;
+            cursor: pointer;
+            font-size: 11px;
+            margin-top: 3px;
+            transition: color 0.2s;
+        }
+        .delete-btn-sm:hover { color: #ef4444; }
+
+        /* Footer Branding */
+        .app-footer-brand {
+            text-align: center;
+            padding: 10px 0 4px 0;
+            font-size: 11px;
+            color: #94a3b8;
+            flex-shrink: 0;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 6px;
+        }
+
+        /* Modals */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(6, 9, 19, 0.75);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 20px;
+        }
+
+        .modal-box {
+            background: white;
+            width: 100%;
+            max-width: 380px;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes scaleUp {
+            from { opacity: 0; transform: scale(0.92); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .modal-header-row h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .close-modal-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #64748b;
+            cursor: pointer;
+        }
+
+        .input-group {
+            margin-bottom: 14px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 5px;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            font-size: 14px;
+            outline: none;
+            background: #fff;
+            color: #1e293b;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+        }
+
+        .btn-modal-submit {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 13px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 6px;
+            box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Main Application Header -->
+        <header class="app-header">
+            <div class="header-top">
+                <div class="app-title">
+                    <h1>Zayan Ultra Khata</h1>
+                    <p>স্মার্ট বাকি ও ক্যাশ খাতা অ্যাপ</p>
+                </div>
+                <div class="header-actions">
+                    <button class="top-icon-btn" onclick="downloadFullReport()" title="হিসাব ডাউনলোড (.txt)"><i class="fa-solid fa-download"></i></button>
+                    <button class="top-icon-btn" onclick="shareViaWhatsApp()" title="হোয়াটসঅ্যাপে শেয়ার"><i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i></button>
+                </div>
+            </div>
+
+            <!-- Dashboard Overview Grid (3 items) -->
+            <div class="dash-grid-3">
+                <div class="dash-card">
+                    <span>মোট দোকান</span>
+                    <h2 id="lbl-total-shops">০টি</h2>
+                </div>
+                <div class="dash-card">
+                    <span>সর্বমোট বাকি</span>
+                    <h2 id="lbl-total-due">৳ ০</h2>
+                </div>
+                <div class="dash-card">
+                    <span>সর্বমোট পাওনা</span>
+                    <h2 id="lbl-total-advance">৳ ০</h2>
+                </div>
+            </div>
+        </header>
+
+        <!-- Home Page View (Shop List) -->
+        <div class="view-pane" id="home-view-pane">
+            <button class="btn-main" onclick="openShopModal()">
+                <i class="fa-solid fa-store"></i> নতুন দোকান যুক্ত করুন
+            </button>
+
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="দোকানের নাম বা নম্বর দিয়ে খুঁজুন..." onkeyup="filterShops()">
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 13px; font-weight: 600; color: #475569;">দোকানের তালিকা</span>
+                <span id="shop-counter-text" style="font-size: 12px; color: #94a3b8;">০টি দোকান</span>
+            </div>
+
+            <div id="shop-cards-container" style="overflow-y: auto; flex-grow: 1;">
+                <!-- Shops rendered dynamically -->
+            </div>
+
+            <div class="app-footer-brand">
+                Design & Developed for Zayan • All Rights Reserved
+            </div>
+        </div>
+
+        <!-- Full-Screen Shop Detail Page View -->
+        <div id="shop-detail-pane">
+            <div class="detail-top-nav">
+                <button class="back-btn" onclick="closeShopDetailPage()">
+                    <i class="fa-solid fa-arrow-left"></i> পেছনে ফিরুন
+                </button>
+                <button onclick="deleteActiveShop()" style="background:#fee2e2; color:#dc2626; border:none; padding:8px 12px; border-radius:10px; font-size:12px; font-weight:600; cursor:pointer;">
+                    দোকান ডিলিট
+                </button>
+            </div>
+
+            <div class="shop-summary-banner">
+                <div>
+                    <h3 id="det-shop-name" style="font-size: 16px; font-weight: 700; color: #1e293b;">দোকানের নাম</h3>
+                    <p id="det-shop-phone" style="font-size: 12px; color: #64748b; margin-top: 2px;">নম্বর নেই</p>
+                </div>
+                <div style="text-align: right;">
+                    <span id="det-status-label" style="font-size: 11px; color: #64748b;">হিসাব স্ট্যাটাস</span>
+                    <h3 id="det-shop-due" style="font-size: 17px; font-weight: 700; color: #dc2626;">৳ ০</h3>
+                </div>
+            </div>
+
+            <!-- Mini Stats: Total Bought vs Total Paid -->
+            <div class="detail-stats-row">
+                <div class="mini-stat-card">
+                    <span>মোট বাকি খরচ</span>
+                    <h4 id="det-total-due-sum" style="color: #dc2626;">৳ ০</h4>
+                </div>
+                <div class="mini-stat-card">
+                    <span>মোট টাকা জমা</span>
+                    <h4 id="det-total-paid-sum" style="color: #16a34a;">৳ ০</h4>
+                </div>
+            </div>
+
+            <button class="btn-main" onclick="openTransModal()">
+                <i class="fa-solid fa-circle-plus"></i> বাকি খরচ বা টাকা জমা এন্ট্রি করুন
+            </button>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" onclick="setHistoryFilter('all', this)">সকল এন্ট্রি</button>
+                <button class="filter-tab" onclick="setHistoryFilter('due', this)">বাকি খরচ</button>
+                <button class="filter-tab" onclick="setHistoryFilter('payment', this)">টাকা জমা</button>
+            </div>
+
+            <div class="history-sheet-container" id="history-container">
+                <!-- Transaction history sheet rendered dynamically -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal: Add Shop -->
+    <div class="modal-overlay" id="modal-shop">
+        <div class="modal-box">
+            <div class="modal-header-row">
+                <h3>নতুন দোকান যোগ করুন</h3>
+                <button class="close-modal-btn" onclick="closeShopModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="handleSaveShop(event)">
+                <div class="input-group">
+                    <label>দোকানের নাম</label>
+                    <input type="text" id="input-shop-name" placeholder="যেমন: ভাই ভাই মুদির দোকান" required>
+                </div>
+                <div class="input-group">
+                    <label>মালিক বা ফোন নম্বর (ঐচ্ছিক)</label>
+                    <input type="tel" id="input-shop-phone" placeholder="017xxxxxxxx">
+                </div>
+                <button type="submit" class="btn-modal-submit">দোকান সেভ করুন</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Add Transaction -->
+    <div class="modal-overlay" id="modal-trans">
+        <div class="modal-box">
+            <div class="modal-header-row">
+                <h3>হিসাব বা এন্ট্রি যোগ করুন</h3>
+                <button class="close-modal-btn" onclick="closeTransModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="handleSaveTransaction(event)">
+                <div class="input-group">
+                    <label>লেনদেনের ধরণ</label>
+                    <select id="select-trans-type" onchange="updateTransLabel()">
+                        <option value="due">বাকি খরচ (+ নতুন পণ্য ক্রয়)</option>
+                        <option value="payment">টাকা জমা (- পরিশোধ)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label id="label-trans-desc">কী কিনেছেন / বিবরণ</label>
+                    <input type="text" id="input-trans-desc" placeholder="যেমন: ১ কেজি চাল, ১ লিটার তেল">
+                </div>
+                <div class="input-group">
+                    <label>টাকার পরিমাণ (৳)</label>
+                    <input type="number" id="input-trans-amount" placeholder="যেমন: ৫০০" required>
+                </div>
+                <button type="submit" class="btn-modal-submit">হিসাব নিশ্চিত করুন</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        let shopsData = JSON.parse(localStorage.getItem('zayan_ultra_khata_data')) || [
+            {
+                id: 1,
+                name: "নিউ স্টার স্টোর",
+                phone: "01711000000",
+                transactions: [
+                    { id: 101, type: "due", desc: "চাল ও ডাল ক্রয়", amount: 500, time: "06 Oct 2026, 11:30 AM" },
+                    { id: 102, type: "payment", desc: "নগদ টাকা পরিশোধ", amount: 700, time: "06 Oct 2026, 02:10 PM" }
+                ]
+            }
+        ];
+
+        let activeShopId = null;
+        let currentFilter = 'all';
+
+        const homePane = document.getElementById('home-view-pane');
+        const detailPane = document.getElementById('shop-detail-pane');
+        const shopCardsContainer = document.getElementById('shop-cards-container');
+        const lblTotalShops = document.getElementById('lbl-total-shops');
+        const lblTotalDue = document.getElementById('lbl-total-due');
+        const lblTotalAdvance = document.getElementById('lbl-total-advance');
+        const shopCounterText = document.getElementById('shop-counter-text');
+
+        function renderHomeScreen() {
+            detailPane.classList.remove('active');
+            shopCardsContainer.innerHTML = '';
+            
+            let totalDueSum = 0;
+            let totalAdvSum = 0;
+
+            if (shopsData.length === 0) {
+                shopCardsContainer.innerHTML = `<div style="text-align:center; padding:50px 20px; color:#94a3b8;"><i class="fa-solid fa-store" style="font-size:42px; margin-bottom:12px; color:#cbd5e1;"></i><p>কোনো দোকান নেই। নতুন দোকান যোগ করে হিসাব রাখা শুরু করুন।</p></div>`;
+            } else {
+                shopsData.forEach(shop => {
+                    let netBalance = shop.transactions.reduce((acc, t) => {
+                        return t.type === 'due' ? acc + Number(t.amount) : acc - Number(t.amount);
+                    }, 0);
+                    
+                    if (netBalance > 0) {
+                        totalDueSum += netBalance;
+                    } else if (netBalance < 0) {
+                        totalAdvSum += Math.abs(netBalance);
+                    }
+
+                    let initialLetter = shop.name.charAt(0);
+                    let balanceClass = '';
+                    let balanceText = '';
+                    let balanceLabel = '';
+
+                    if (netBalance > 0) {
+                        balanceClass = 'has-due';
+                        balanceText = `৳ ${netBalance}`;
+                        balanceLabel = 'বাকি আছে';
+                    } else if (netBalance < 0) {
+                        balanceClass = 'advance';
+                        balanceText = `৳ ${Math.abs(netBalance)}`;
+                        balanceLabel = 'পাওনা (অ্যাডভান্স)';
+                    } else {
+                        balanceClass = 'clear';
+                        balanceText = `৳ ০`;
+                        balanceLabel = 'হিসাব সমান';
+                    }
+
+                    let cardHTML = `
+                        <div class="shop-item-card" onclick="openShopDetailPage(${shop.id})">
+                            <div class="shop-info-left">
+                                <div class="shop-avatar-icon">${initialLetter}</div>
+                                <div class="shop-meta">
+                                    <h4>${shop.name}</h4>
+                                    <p>${shop.phone ? shop.phone : 'নম্বর নেই'} • ${shop.transactions.length} টি এন্ট্রি</p>
+                                </div>
+                            </div>
+                            <div class="shop-due-right">
+                                <div class="due-val ${balanceClass}">${balanceText}</div>
+                                <div class="due-lbl ${balanceClass}">${balanceLabel}</div>
+                            </div>
+                        </div>
+                    `;
+                    shopCardsContainer.innerHTML += cardHTML;
+                });
+            }
+
+            lblTotalShops.innerText = `${shopsData.length}টি`;
+            lblTotalDue.innerText = `৳ ${totalDueSum}`;
+            lblTotalAdvance.innerText = `৳ ${totalAdvSum}`;
+            shopCounterText.innerText = `${shopsData.length}টি দোকান`;
+
+            localStorage.setItem('zayan_ultra_khata_data', JSON.stringify(shopsData));
+        }
+
+        function openShopDetailPage(shopId) {
+            activeShopId = shopId;
+            currentFilter = 'all';
+            document.querySelectorAll('.filter-tab').forEach((t, i) => t.classList.toggle('active', i === 0));
+            detailPane.classList.add('active');
+            renderDetailScreenContent();
+        }
+
+        function closeShopDetailPage() {
+            activeShopId = null;
+            renderHomeScreen();
+        }
+
+        function setHistoryFilter(filterType, btnElem) {
+            currentFilter = filterType;
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            btnElem.classList.add('active');
+            renderDetailScreenContent();
+        }
+
+        function renderDetailScreenContent() {
+            let shop = shopsData.find(s => s.id === activeShopId);
+            if (!shop) return;
+
+            document.getElementById('det-shop-name').innerText = shop.name;
+            document.getElementById('det-shop-phone').innerText = shop.phone ? shop.phone : 'ফোন নম্বর দেওয়া নেই';
+
+            let totalDueBought = shop.transactions.filter(t => t.type === 'due').reduce((sum, t) => sum + Number(t.amount), 0);
+            let totalPaidCash = shop.transactions.filter(t => t.type === 'payment').reduce((sum, t) => sum + Number(t.amount), 0);
+
+            document.getElementById('det-total-due-sum').innerText = `৳ ${totalDueBought}`;
+            document.getElementById('det-total-paid-sum').innerText = `৳ ${totalPaidCash}`;
+
+            let netBalance = totalDueBought - totalPaidCash;
+
+            let detDueElem = document.getElementById('det-shop-due');
+            let detLblElem = document.getElementById('det-status-label');
+
+            if (netBalance > 0) {
+                detDueElem.innerText = `৳ ${netBalance}`;
+                detDueElem.style.color = '#dc2626';
+                detLblElem.innerText = 'এই দোকানে আপনার মোট বাকি';
+            } else if (netBalance < 0) {
+                detDueElem.innerText = `৳ ${Math.abs(netBalance)}`;
+                detDueElem.style.color = '#16a34a';
+                detLblElem.innerText = 'দোকানের কাছে আপনার পাওনা (অ্যাডভান্স)';
+            } else {
+                detDueElem.innerText = `৳ ০`;
+                detDueElem.style.color = '#475569';
+                detLblElem.innerText = 'হিসাব সমান সমান (পরিশোধিত)';
+            }
+
+            let historyContainer = document.getElementById('history-container');
+            historyContainer.innerHTML = '';
+
+            let filteredTransactions = shop.transactions.filter(t => {
+                if (currentFilter === 'due') return t.type === 'due';
+                if (currentFilter === 'payment') return t.type === 'payment';
+                return true;
+            });
+
+            if (filteredTransactions.length === 0) {
+                historyContainer.innerHTML = `<div style="text-align:center; padding:40px; color:#94a3b8;"><p>এই ফিল্টারে কোনো হিসাব পাওয়া যায়নি।</p></div>`;
+            } else {
+                [...filteredTransactions].reverse().forEach(t => {
+                    let isDue = t.type === 'due';
+                    let itemHtml = `
+                        <div class="history-card ${isDue ? 'due' : 'payment'}">
+                            <div class="history-desc">
+                                <div class="title">${t.desc ? t.desc : (isDue ? 'পণ্য ক্রয় (বাকি)' : 'টাকা পরিশোধ (জমা)')}</div>
+                                <div class="timestamp"><i class="fa-regular fa-clock"></i> ${t.time}</div>
+                            </div>
+                            <div class="history-amount-box">
+                                <div class="amount-val ${isDue ? 'due' : 'payment'}">${isDue ? '+' : '-'}৳ ${t.amount}</div>
+                                <button class="delete-btn-sm" onclick="deleteTransaction(${t.id})"><i class="fa-solid fa-trash-can"></i> মুছুন</button>
+                            </div>
+                        </div>
+                    `;
+                    historyContainer.innerHTML += itemHtml;
+                });
+            }
+
+            // Update Header Totals
+            let totalDueSum = 0;
+            let totalAdvSum = 0;
+            shopsData.forEach(s => {
+                let sDue = s.transactions.filter(tr => tr.type === 'due').reduce((sum, tr) => sum + Number(tr.amount), 0);
+                let sPay = s.transactions.filter(tr => tr.type === 'payment').reduce((sum, tr) => sum + Number(tr.amount), 0);
+                let sNet = sDue - sPay;
+                if (sNet > 0) totalDueSum += sNet;
+                if (sNet < 0) totalAdvSum += Math.abs(sNet);
+            });
+            lblTotalDue.innerText = `৳ ${totalDueSum}`;
+            lblTotalAdvance.innerText = `৳ ${totalAdvSum}`;
+            lblTotalShops.innerText = `${shopsData.length}টি`;
+
+            localStorage.setItem('zayan_ultra_khata_data', JSON.stringify(shopsData));
+        }
+
+        // Modals
+        function openShopModal() { document.getElementById('modal-shop').style.display = 'flex'; }
+        function closeShopModal() { document.getElementById('modal-shop').style.display = 'none'; document.getElementById('input-shop-name').value=''; document.getElementById('input-shop-phone').value=''; }
+
+        function openTransModal() { document.getElementById('modal-trans').style.display = 'flex'; }
+        function closeTransModal() { document.getElementById('modal-trans').style.display = 'none'; document.getElementById('input-trans-desc').value=''; document.getElementById('input-trans-amount').value=''; }
+
+        function updateTransLabel() {
+            let type = document.getElementById('select-trans-type').value;
+            let label = document.getElementById('label-trans-desc');
+            label.innerText = type === 'due' ? 'কী কিনেছেন / বিবরণ' : 'জমা দেওয়ার বিবরণ (যেমন: নগদ পরিশোধ)';
+        }
+
+        function handleSaveShop(e) {
+            e.preventDefault();
+            let name = document.getElementById('input-shop-name').value;
+            let phone = document.getElementById('input-shop-phone').value;
+
+            let newShop = {
+                id: Date.now(),
+                name: name,
+                phone: phone,
+                transactions: []
+            };
+
+            shopsData.unshift(newShop);
+            closeShopModal();
+            renderHomeScreen();
+        }
+
+        function handleSaveTransaction(e) {
+            e.preventDefault();
+            let type = document.getElementById('select-trans-type').value;
+            let desc = document.getElementById('input-trans-desc').value;
+            let amount = document.getElementById('input-trans-amount').value;
+
+            let shop = shopsData.find(s => s.id === activeShopId);
+            if (shop) {
+                let now = new Date();
+                let datePart = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+                let timePart = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                let timeStr = `${datePart}, ${timePart}`;
+
+                let newTrans = {
+                    id: Date.now(),
+                    type: type,
+                    desc: desc,
+                    amount: Number(amount),
+                    time: timeStr
+                };
+
+                shop.transactions.push(newTrans);
+                closeTransModal();
+                renderDetailScreenContent();
+            }
+        }
+
+        function deleteTransaction(tId) {
+            if (confirm('এই হিসাব বা এন্ট্রিটি মুছে ফেলতে চান?')) {
+                let shop = shopsData.find(s => s.id === activeShopId);
+                if (shop) {
+                    shop.transactions = shop.transactions.filter(t => t.id !== tId);
+                    renderDetailScreenContent();
+                }
+            }
+        }
+
+        function deleteActiveShop() {
+            if (confirm('এই দোকান এবং এর ভেতরের সমস্ত হিসাব চিরতরে মুছে যাবে। আপনি কি নিশ্চিত?')) {
+                shopsData = shopsData.filter(s => s.id !== activeShopId);
+                closeShopDetailPage();
+            }
+        }
+
+        function filterShops() {
+            let keyword = document.getElementById('search-input').value.toLowerCase();
+            let cards = document.querySelectorAll('.shop-item-card');
+
+            shopsData.forEach((shop, idx) => {
+                let match = shop.name.toLowerCase().includes(keyword) || (shop.phone && shop.phone.includes(keyword));
+                if (cards[idx]) {
+                    cards[idx].style.display = match ? 'flex' : 'none';
+                }
+            });
+        }
+
+        function downloadFullReport() {
+            let reportText = "====================================\n";
+            reportText += "     ZAYAN ULTRA KHATA REPORT       \n";
+            reportText += "====================================\n\n";
+            
+            let totalDue = 0;
+            let totalAdv = 0;
+            shopsData.forEach(s => {
+                let sDue = s.transactions.filter(tr => tr.type === 'due').reduce((sum, tr) => sum + Number(tr.amount), 0);
+                let sPay = s.transactions.filter(tr => tr.type === 'payment').reduce((sum, tr) => sum + Number(tr.amount), 0);
+                let sNet = sDue - sPay;
+
+                if (sNet > 0) totalDue += sNet;
+                if (sNet < 0) totalAdv += Math.abs(sNet);
+
+                reportText += `দোকান: ${s.name} (${s.phone ? s.phone : 'নম্বর নেই'})\n`;
+                reportText += `মোট বাকি খরচ: ৳${sDue} | মোট জমা: ৳${sPay}\n`;
+                reportText += `স্ট্যাটাস: ${sNet > 0 ? 'বাকি: ৳' + sNet : (sNet < 0 ? 'পাওনা (অ্যাডভান্স): ৳' + Math.abs(sNet) : 'হিসাব পরিশোধিত')}\n`;
+                reportText += `------------------------------------\n`;
+            });
+            reportText += `\nসর্বমোট বাকি: ৳${totalDue}\n`;
+            reportText += `সর্বমোট পাওনা (অ্যাডভান্স): ৳${totalAdv}\n`;
+            reportText += "====================================\n";
+
+            let blob = new Blob([reportText], { type: 'text/plain;charset=utf-8' });
+            let url = URL.createObjectURL(blob);
+            let a = document.createElement('a');
+            a.href = url;
+            a.download = 'Zayan_Ultra_Khata_Report.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function shareViaWhatsApp() {
+            let totalDue = 0;
+            let totalAdv = 0;
+            let text = "*Zayan Ultra Khata - হিসাব সামারি*%0A%0A";
+            shopsData.forEach(s => {
+                let sDue = s.transactions.filter(tr => tr.type === 'due').reduce((sum, tr) => sum + Number(tr.amount), 0);
+                let sPay = s.transactions.filter(tr => tr.type === 'payment').reduce((sum, tr) => sum + Number(tr.amount), 0);
+                let sNet = sDue - sPay;
+
+                if (sNet > 0) totalDue += sNet;
+                if (sNet < 0) totalAdv += Math.abs(sNet);
+
+                let statusStr = sNet > 0 ? `বাকি ৳${sNet}` : (sNet < 0 ? `পাওনা ৳${Math.abs(sNet)}` : `পরিশোধিত`);
+                text += `• ${s.name}: *${statusStr}*%0A`;
+            });
+            text += `%0A*সর্বমোট বাকি:* ৳${totalDue}%0A*সর্বমোট পাওনা:* ৳${totalAdv}`;
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+
+        // Initialize App on Load
+        renderHomeScreen();
+    </script>
+
+</body>
+</html>
